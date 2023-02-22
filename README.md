@@ -50,6 +50,24 @@ Creacion de un expediente digital para el ITQ
   tambien evitar variaciones minimas en los nombres, ejemplo:
   ** int controladorDeManejoEficcienteDeCadenas;
   ** int controladorDeAlmacenamientoEfficienteDeCadenas;
+  
+  REALIZAR DISTINCIONES CON SENTIDO.
+  cuando se realiza una referencia a 2 elemnetos distintos del mismo ambito se debe
+  diferenciar de manera adecuada, por ejemplo, 2 objetos una funcion para copiar una
+  cadena.
+  ** public void copiarCadena (char cadena1[], char cadena2[] )
+  mejor diferenciarlos con sentido como:
+  ** public void copiarCadena(char origen[], char destino[])
+  
+  USAR NOMBRES QUE SE PUEDAN PRONUNCIAR
+  Todas los nombres se deben poder pronunciar, para esto no usar acronimos
+  por ejemplo para nombrar una variable para guardar el tiempo en dias no usar
+  **int tiEnDi; / int ted;
+  mejor usar
+  **int tiempoEnDias;
+  es mejor un nombre largo, que tratar de adivinar que para que es la variable.
+  
+  
 ## Funciones.
 
 ## Comentarios.
