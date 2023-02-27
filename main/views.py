@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def index(request): #{METODO REQUEST DE HTTP}
+    
+    return render(request,'base/index.html') #{DEVUELVE EL HTML (REQUEST)}

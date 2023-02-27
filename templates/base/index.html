@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    <!--meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script language="JavaScript">
+    function mueveReloj()
+    {
+        momentoActual = new Date()
+        hora = momentoActual.getHours()
+        minuto = momentoActual.getMinutes()
+        segundo = momentoActual.getSeconds()
+    
+        horaImprimible = hora + " : " + minuto //+ " : " + segundo
+    
+        document.form_reloj.reloj.value = horaImprimible
+    
+        setTimeout("mueveReloj()",1000)
+    }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/tec_estilo_bs.css' %}">
+    <title>SII :: Página de Bienvenida</title>
+</head>
+
+<body onload="mueveReloj()">
+
+    <div class="container-fluid"> <nav class="navbar navbar-inverse navbar-fixed-top"> <div class="container"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <nav class="navbar navbar-inverse navbar-fixed-top"> <div class="container"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button> <a href="https://sii.itq.edu.mx/sistema/modulos/alu/index.php"><img src="https://sii.itq.edu.mx/sistema/img/iconos/itq_blanco.png" class="img-responsive" alt="Instituto Tecnológico de Querétaro"> </a> </div> <div id="navbar" class="navbar-collapse collapse"> <ul class="nav navbar-nav navbar-right"> <li> <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-paperclip" aria-hidden="true">&nbsp;</span><thspan class="thspan" data-rwthpgen="1" data-ss-id="rwTH03f0f19743d9ce30e6d74b4fcb71c39e">Información Escolar </thspan><span class="caret"></span></a> <ul class="dropdown-menu">
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/boletas/boleta.php">Boleta de Calificaciones</a></li>
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/cons/alumnos/avance_reticular.php">Avance Reticular</a></li>
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/cons/alumnos/horario.php">Horario</a></li>
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/cons/alumnos/kardex.php">Kardex</a></li>
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/cons/alumnos/calificaciones_parciales.php">Calif. Parciales</a></li>
+                </ul> </li> <li> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;</span><thspan class="thspan" data-rwthpgen="1" data-ss-id="rwTHeb5551e6c7510159fd9b2948f76eee7e">Servicios al Alumno </thspan><span class="caret"></span></a> <ul class="dropdown-menu">
+                    <li class="dropdown-header">REINSCRIPCIONES</li>
+                        <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/seleccion_materias/seleccion_materias.php?tipo_sele=O">&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;Ene - Jun || Ago - Dic</a></li>
+                        <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/seleccion_materias/seleccion_materias.php?tipo_sele=V">&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;Verano</a></li>
+                        <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/generales/correon.php">&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;Consulta Fecha</a></li>							
+                        <!--li><a href="#">&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;Extraescolares</a></li-->
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">PAGOS</li>
+                        <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/pagos/pago_reinscripcion.php?tipo_sele=O">&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;Reinscripción</a></li>
+                        <li><a href="https://www.adquiramexico.com.mx/mExpress/portal/tecnacmexico" target="_blank">&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;Pagos Posgrado</a></li>							
+                        <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/pagos/pago_reinscripcion.php?tipo_sele=E">&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;Cursos Especiales</a></li>
+                        <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/pagos/pago_reinscripcion.php?tipo_sele=V">&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;Verano</a></li>
+                        <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/pagos/">&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;Otros Pagos</a></li>
+                        <!--li role="separator" class="divider"><a href="https://sii.itq.edu.mx/sistema/modulos/alu/pagos/pago_egreso.php"></a></li-->
+                    <li role="separator" class="divider"></li>
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/evaluacion_docente/">Evaluación Docente</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/servicio_social/consulta_dependencias.php">Servicio Social</a></li>
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/residencia/">Residencia</a></li>
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/quejas_y_sugerencias/">Quejas y Sugerencias</a></li>
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/generales/">Actualiza Datos de Contacto</a></li>
+                    <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/constancias/">Emisión de constancias de estudio</a></li>
+                    <li><a href="http://www.itq.edu.mx/alumnos/formatosdivision.html" target="_blank">Formatos</a></li>
+                </ul> </li> <li> <!-- movi--> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-book" aria-hidden="true"> </span><thspan class="thspan" data-rwthpgen="1" data-ss-id="rwTH852eb329f3dd831c6b918636f094d1c4">&nbsp;Tutorias </thspan><span class="caret"></span></a> <ul class="dropdown-menu">
+                  <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/tutorias/presentacion_programa_tutorias.php">Acerca del programa</a></li>
+                  <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/tutorias/tutor_mensaje.php">Tutor y Mensajes</a></li>
+                  <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/tutorias/evaluacion_al_tutor.php">Evaluación al Tutor</a></li>
+                  <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/tutorias/material.php">Material</a></li>
+                  <li><a href="https://sii.itq.edu.mx/sistema/modulos/alu/tutorias/plan_academica.php">Planeación Acedémica</a></li>						  
+                </ul> </li> <li> <a href="http://sgc.itq.edu.mx/sgc/" target="_blank"> <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span><thspan class="thspan" data-rwthpgen="1" data-ss-id="rwTH24638f62679a97f4b7c31cfd7da10391"> &nbsp;SGI </thspan></a> </li><!-- movi--> <li class="active"><a href="https://sii.itq.edu.mx/sistema/cerrar_sesion.php"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li> </ul> </div><!--/.nav-collapse --> </div> </nav>
+    </div>
+
+    {% block cuerpo %}
+    
+    {% endblock %}
+</body>
