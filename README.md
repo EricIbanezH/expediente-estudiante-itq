@@ -72,7 +72,7 @@ Creacion de un expediente digital para el ITQ
   NO USAR ASIGNACIONES MENTALES
   usar nombres que el programador solo recuerda o solo el sabe que significa, usar un nombre
   que revele la intencion.
-##Funciones ___________________________________________________________________________________________________________________________________
+## Funciones _________________________________________________________________________________________________________________________
 
   TAMAÑO REDUCIDO
   las funciones deben ser lo mas pequeñas posibles.
