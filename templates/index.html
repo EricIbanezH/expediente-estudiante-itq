@@ -1,16 +1,23 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block cuerpo %}
 <p>
-    <a href="/crear-tramite">crear tramite</a>
-</p>
-<br>
-<br>
+    <a href="{% url 'crear_tramite' %}">crear tramite</a>
+</p><br><br>
 <p>
-    <a href="/editar-tramite">editar tramite</a>
-</p>
-<br>
-<br>
+    <a href="{# url 'editar_tramite' #}"> editar tramite</a>
+</p><br><br>
 <p>
-    <a href="/lista-tramites">lista de tramites</a>
-</p>
+    <a href="{% url 'listar_tramites' %}">lista de tramites</a>
+</p><br><br>
+<p>
+    <a href="{% url 'crear_estado' %}">Crear Estado</a>
+</p><br><br>
+<p>
+    <a href="{# url 'editar_estado' #}">Editar Estado</a>
+</p><br><br>
+<p>
+    <a href="{% url 'listar_estados' %}">Lista de Estados</a>
+</p><br><br>
+
 {% endblock%}

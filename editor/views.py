@@ -1,7 +1,7 @@
 from email.policy import default
 from django.shortcuts import render
-from editor.formularios import FormularioTramite
-from editor.models import Tipo_Tramite, Rel_Tram_Rol,Rol,Rel_Tram_Doc,Tipo_Documento, Tramite
+from editor.formularios import FormularioTramite, Formulario_Estado
+from editor.models import Tipo_Archivo, Tipo_Documento, Tipo_Tramite, Estado, Rel_Tram_Doc, Rel_Tram_Rol,Rol
 
 def publicarRelacionTramiteDocumento(modeloTipoTramite,listaIdDocumento):
     for documentoId in listaIdDocumento:
@@ -50,3 +50,21 @@ def listarTipoDeTramites(request):
 
            
 # Create your views here.
+# R: nel
+
+def crear_Estado(request):
+    if request.method=='GET':
+        contexto = {'form': Formulario_Estado}
+        return render(request,'formulario.html',contexto)
+    else:
+        nuevoEstado = Estado(
+            nombre = request.POST['nombre']
+        )
+        nuevoEstado.save()
+        
+        
+        return render(request,'index.html')
+    
+def listar_Estados(request):
+    lista = Estado.objects.all()
+    return render(request, 'lista-general.html', {'object_list' : lista, 'modelo': Estado})

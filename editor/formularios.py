@@ -1,5 +1,5 @@
 from django import forms
-from editor.models import Tipo_Tramite,Rol,Tipo_Documento
+from editor.models import Tipo_Tramite,Rol,Tipo_Documento, Estado
 
 
 class FormularioTramite(forms.Form):
@@ -15,3 +15,8 @@ class FormularioTramite(forms.Form):
         model = Tipo_Tramite
 
 
+class Formulario_Estado(forms.Form):
+    nombre = forms.CharField(required=True)
+
+    class meta:
+        model = Estado
