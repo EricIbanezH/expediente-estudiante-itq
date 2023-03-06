@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load poll_extras %}
 
 {% block styles %}
     <style>
@@ -12,7 +13,7 @@
 {% for tipoTramite in listaTipoDeTramites %}
 
 <br>
-<button type="button" id='botonNombre'><h5>nombre: {{tipoTramite.nombre}}</h5></button> 
+<button type="button" id='botonNombre'><h5>{% get_verbose_name tipoTramite 'nombre' %}: {{tipoTramite.nombre}}</h5></button> 
 <div id='informacion-tramite'>
 <h6>tiempo estimado en dias: {{tipoTramite.tiempo_estimado}}</h6>
 <h6>estado: {{tipoTramite.habilitado}}</h6>

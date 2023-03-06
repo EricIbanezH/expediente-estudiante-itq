@@ -1,7 +1,10 @@
 from email.policy import default
 from django.shortcuts import render
-from editor.formularios import FormularioTramite, Formulario_Estado
-from editor.models import Tipo_Archivo, Tipo_Documento, Tipo_Tramite, Estado, Rel_Tram_Doc, Rel_Tram_Rol,Rol
+from editor.formularios import FormularioTramite, Formulario_Estado, Formulario_Comentario, Formulario_Tipo_Archivo
+from editor.models import Tipo_Archivo, Tipo_Documento, Tipo_Tramite, Estado, Rel_Tram_Doc, Rel_Tram_Rol,Rol, Comentarios
+
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 def publicarRelacionTramiteDocumento(modeloTipoTramite,listaIdDocumento):
     for documentoId in listaIdDocumento:
@@ -52,19 +55,68 @@ def listarTipoDeTramites(request):
 # Create your views here.
 # R: nel
 
+# Vistas de los Estados
 def crear_Estado(request):
     if request.method=='GET':
         contexto = {'form': Formulario_Estado}
         return render(request,'formulario.html',contexto)
     else:
-        nuevoEstado = Estado(
+        nuevoRegistro = Estado(
             nombre = request.POST['nombre']
         )
-        nuevoEstado.save()
-        
-        
+        nuevoRegistro.save()
         return render(request,'index.html')
     
 def listar_Estados(request):
     lista = Estado.objects.all()
-    return render(request, 'lista-general.html', {'object_list' : lista, 'modelo': Estado})
+    return render(request, 'listas/lista-estado.html', {'object_list' : lista})
+
+class editar_Estado(UpdateView):
+    model = Estado
+    form_class = Formulario_Estado
+    template_name = 'formulario.html'
+    success_url = reverse_lazy('listar_estados')
+
+# Vistas de los Comentarios
+def crear_Comentario(request):
+    if request.method=='GET':
+        contexto = {'form': Formulario_Comentario}
+        return render(request,'formulario.html',contexto)
+    else:
+        nuevoRegistro = Comentarios(
+            descr = request.POST['descr']
+        )
+        nuevoRegistro.save()
+        return render(request,'index.html')
+    
+def listar_Comentarios(request):
+    lista = Comentarios.objects.all()
+    return render(request, 'listas/lista-comentario.html', {'object_list' : lista})
+
+class editar_Comentario(UpdateView):
+    model = Comentarios
+    form_class = Formulario_Comentario
+    template_name = 'formulario.html'
+    success_url = reverse_lazy('listar_comentarios')
+
+# Vistas de los tipo-archivo
+def crear_Tipo_Archivo(request):
+    if request.method=='GET':
+        contexto = {'form': Formulario_Tipo_Archivo}
+        return render(request,'formulario.html',contexto)
+    else:
+        nuevoRegistro = Tipo_Archivo(
+            extension = request.POST['extension']
+        )
+        nuevoRegistro.save()
+        return render(request,'index.html')
+    
+def listar_Tipo_Archivos(request):
+    lista = Tipo_Archivo.objects.all()
+    return render(request, 'listas/lista-tipo-archivo.html', {'object_list' : lista})
+
+class editar_Tipo_Archivo(UpdateView):
+    model = Tipo_Archivo
+    form_class = Formulario_Tipo_Archivo
+    template_name = 'formulario.html'
+    success_url = reverse_lazy('listar_tipo_archivos')

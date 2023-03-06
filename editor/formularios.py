@@ -1,8 +1,9 @@
 from django import forms
-from editor.models import Tipo_Tramite,Rol,Tipo_Documento, Estado
+from editor.templatetags.poll_extras import get_verbose_name
+from editor.models import Tipo_Tramite,Rol,Tipo_Documento, Estado, Comentarios, Tipo_Archivo
 
 
-class FormularioTramite(forms.Form):
+class FormularioTramite(forms.ModelForm):
     nombre = forms.CharField(required=True)
     tiempo_estimado_dias = forms.CharField(required=True)
     estado = forms.ChoiceField(required=True,choices=((True,'Habilitado'),(False,'Deshabilitado')))
@@ -11,12 +12,39 @@ class FormularioTramite(forms.Form):
     opcionesDocumentos = [(choice.pk, choice.nombre) for choice in Tipo_Documento.objects.raw('SELECT * FROM EDITOR_TIPO_DOCUMENTO')]
     requerimientos = forms.MultipleChoiceField(label="Documentos requeridos para tramite",required=True,choices=opcionesDocumentos,widget=forms.CheckboxSelectMultiple)
     
-    class meta:
+    class Meta:
         model = Tipo_Tramite
 
+        fields =[
 
-class Formulario_Estado(forms.Form):
-    nombre = forms.CharField(required=True)
+        ]
 
-    class meta:
+class Formulario_Estado(forms.ModelForm):
+    nombre = forms.CharField(required=True, label=get_verbose_name(Estado, 'nombre'))
+
+    class Meta:
         model = Estado
+
+        fields = [
+            'nombre',
+        ]
+
+class Formulario_Comentario(forms.ModelForm):
+    descr = forms.CharField(required=True, label=get_verbose_name(Comentarios, 'descr'))
+
+    class Meta:
+        model = Comentarios
+
+        fields = [
+            'descr',
+        ]
+
+class Formulario_Tipo_Archivo(forms.ModelForm):
+    extension = forms.CharField(required=True, label=get_verbose_name(Tipo_Archivo, 'extension'))
+
+    class Meta:
+        model = Tipo_Archivo
+
+        fields = [
+            'extension',
+        ]
