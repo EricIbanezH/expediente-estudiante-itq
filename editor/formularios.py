@@ -1,6 +1,6 @@
 from django import forms
 from editor.templatetags.poll_extras import get_verbose_name
-from editor.models import Tipo_Tramite,Rol,Tipo_Documento, Estado, Comentarios, Tipo_Archivo
+from editor.models import Tipo_Tramite,Rol,Tipo_Documento, Estado, Comentarios, Tipo_Archivo, Rol
 
 
 class FormularioTramite(forms.ModelForm):
@@ -47,4 +47,14 @@ class Formulario_Tipo_Archivo(forms.ModelForm):
 
         fields = [
             'extension',
+        ]
+
+class Formulario_Rol(forms.ModelForm):
+    Rol = forms.CharField(required=True, label=get_verbose_name(Rol, 'Rol'))
+
+    class Meta:
+        model = Rol
+
+        fields = [
+            'Rol',
         ]

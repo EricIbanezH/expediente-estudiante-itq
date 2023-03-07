@@ -31,3 +31,7 @@ INSERT INTO `editor_tipo_tramite`(`nombre`, `tiempo_estimado`, `habilitado`) VAL
 INSERT INTO `editor_tipo_tramite`(`nombre`, `tiempo_estimado`, `habilitado`) VALUES ('Servicio Social','180',1);
 INSERT INTO `editor_tipo_tramite`(`nombre`, `tiempo_estimado`, `habilitado`) VALUES ('Residencias','180',1);
 
+-- Roles
+INSERT INTO `editor_rol`(`Rol`) VALUES ('Coordinacion');
+INSERT INTO `editor_rol`(`Rol`) VALUES ('Titulacion');
+INSERT INTO `editor_rol`(`Rol`) VALUES ('Docente');

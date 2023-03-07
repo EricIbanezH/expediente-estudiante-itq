@@ -1,6 +1,6 @@
 from email.policy import default
-from django.shortcuts import render
-from editor.formularios import FormularioTramite, Formulario_Estado, Formulario_Comentario, Formulario_Tipo_Archivo
+from django.shortcuts import render, redirect, get_object_or_404
+from editor.formularios import FormularioTramite, Formulario_Estado, Formulario_Comentario, Formulario_Tipo_Archivo, Formulario_Rol
 from editor.models import Tipo_Archivo, Tipo_Documento, Tipo_Tramite, Estado, Rel_Tram_Doc, Rel_Tram_Rol,Rol, Comentarios
 
 from django.urls import reverse_lazy
@@ -65,7 +65,7 @@ def crear_Estado(request):
             nombre = request.POST['nombre']
         )
         nuevoRegistro.save()
-        return render(request,'index.html')
+        return redirect(request,'listar_estados')
     
 def listar_Estados(request):
     lista = Estado.objects.all()
@@ -77,6 +77,11 @@ class editar_Estado(UpdateView):
     template_name = 'formulario.html'
     success_url = reverse_lazy('listar_estados')
 
+def eliminar_Estado(request, pk):
+    registro = get_object_or_404(Estado, id=pk)
+    registro.delete()
+    return redirect('listar_estados')
+
 # Vistas de los Comentarios
 def crear_Comentario(request):
     if request.method=='GET':
@@ -87,7 +92,7 @@ def crear_Comentario(request):
             descr = request.POST['descr']
         )
         nuevoRegistro.save()
-        return render(request,'index.html')
+        return redirect(request,'listar_comentarios')
     
 def listar_Comentarios(request):
     lista = Comentarios.objects.all()
@@ -99,6 +104,11 @@ class editar_Comentario(UpdateView):
     template_name = 'formulario.html'
     success_url = reverse_lazy('listar_comentarios')
 
+def eliminar_Comentario(request, pk):
+    registro = get_object_or_404(Comentarios, id=pk)
+    registro.delete()
+    return redirect('listar_comentarios')
+
 # Vistas de los tipo-archivo
 def crear_Tipo_Archivo(request):
     if request.method=='GET':
@@ -109,7 +119,7 @@ def crear_Tipo_Archivo(request):
             extension = request.POST['extension']
         )
         nuevoRegistro.save()
-        return render(request,'index.html')
+        return redirect(request,'listar_tipo_archivos')
     
 def listar_Tipo_Archivos(request):
     lista = Tipo_Archivo.objects.all()
@@ -120,3 +130,37 @@ class editar_Tipo_Archivo(UpdateView):
     form_class = Formulario_Tipo_Archivo
     template_name = 'formulario.html'
     success_url = reverse_lazy('listar_tipo_archivos')
+
+def eliminar_Tipo_Archivo(request, pk):
+    registro = get_object_or_404(Tipo_Archivo, id=pk)
+    registro.delete()
+    return redirect('listar_tipo_archivos')
+
+# Vistas de los Roles
+def crear_Rol(request):
+    if request.method=='GET':
+        contexto = {'form': Formulario_Rol}
+        return render(request,'formulario.html',contexto)
+    else:
+        nuevoRegistro = Rol(
+            Rol = request.POST['Rol']
+        )
+        nuevoRegistro.save()
+        return redirect('listar_roles')
+    
+def listar_Roles(request):
+    lista = Rol.objects.all()
+    return render(request, 'listas/lista-roles.html', {'object_list' : lista})
+
+class editar_Rol(UpdateView):
+    model = Rol
+    form_class = Formulario_Rol
+    template_name = 'formulario.html'
+    success_url = reverse_lazy('listar_roles')
+
+def eliminar_Rol(request, pk):
+    registro = get_object_or_404(Rol, id=pk)
+    registro.delete()
+    return redirect('listar_roles')
+
+
