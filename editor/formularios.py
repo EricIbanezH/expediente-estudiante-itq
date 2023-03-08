@@ -55,3 +55,18 @@ class Formulario_Rol(forms.ModelForm):
         fields = [
             'Rol',
         ]
+
+class Formulario_tipoDocumento(forms.ModelForm):
+    nombre = forms.CharField(required=True, label=get_verbose_name(Tipo_Documento, 'nombre'))
+    tamano_MB = forms.IntegerField(required=True, label=get_verbose_name(Tipo_Documento, 'tamano_MB'))
+    listaExtensiones = [(choice.pk, choice.extension) for choice in Tipo_Archivo.objects.raw('SELECT * FROM EDITOR_TIPO_ARCHIVO')]
+    tipo_archivo = forms.ChoiceField(label="Extension del documento",required=True,choices=listaExtensiones)
+    
+    class Meta:
+        model = Tipo_Documento
+
+        fields = [
+            'nombre',
+            'tamano_MB',
+        ]
+

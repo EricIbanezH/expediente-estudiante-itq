@@ -1,6 +1,7 @@
+from distutils import extension
 from email.policy import default
 from django.shortcuts import render, redirect, get_object_or_404
-from editor.formularios import FormularioTramite, Formulario_Estado, Formulario_Comentario, Formulario_Tipo_Archivo, Formulario_Rol
+from editor.formularios import *
 from editor.models import Tipo_Archivo, Tipo_Documento, Tipo_Tramite, Estado, Rel_Tram_Doc, Rel_Tram_Rol,Rol, Comentarios
 
 from django.urls import reverse_lazy
@@ -197,4 +198,36 @@ def eliminar_Rol(request, pk):
     registro.delete()
     return redirect('listar_roles')
 
+# vista de documento
 
+def crearTipoDocumento(request):
+    if request.method=='GET':
+        contexto = {'form': Formulario_tipoDocumento}
+        return render(request,'formulario.html',contexto)
+    else:
+        publicarTipoDocumento(request)
+        return render(request,'index.html')
+
+def publicarTipoDocumento(request):
+    extension = Tipo_Archivo.objects.get(id=request.POST['tipo_archivo'])
+    nuevoTipoDocumento = Tipo_Documento(
+        nombre=request.POST['nombre'],
+        tamano_MB=request.POST['tamano_MB'],
+        tipo_arch = extension
+    )
+    nuevoTipoDocumento.save()
+
+def listar_tipoDocumento(request):
+    lista = Tipo_Documento.objects.all()
+    return render(request, 'listas/lista-tipo-documento.html', {'object_list' : lista})
+
+class editar_TipoDocumento(UpdateView):
+    model = Tipo_Documento
+    form_class = Formulario_tipoDocumento
+    template_name = 'formulario.html'
+    success_url = reverse_lazy('listar_tipo_documento')
+
+def eliminar_tipoDocumento(request, pk):
+    registro = get_object_or_404(Tipo_Documento, id=pk)
+    registro.delete()
+    return redirect('listar_tipo_documento')
