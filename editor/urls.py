@@ -5,8 +5,9 @@ from . import views
 
 urlpatterns =[  #{LISTA DE URLS CON LOS ARCHIVOS HTML A DESPLEGAR}
     path('crear-tramite', views.crearTipoTramite, name = 'crear_tramite'),
-    #path('editar-tramite/<pk>', views.index, name = 'crear_tramite'),
     path('lista-tramites', views.listarTipoDeTramites, name = 'listar_tramites'),
+    path('editar-tramite/<pk>',views.editar_tipoTramite.as_view(),name='editar_tramite'),
+    path('eliminar-tipoTramite/<pk>', views.eliminar_TipoTramite, name="eliminar_tipoTramite"),
     # URL del modelo Estado
     path('crear-estado', views.crear_Estado, name="crear_estado"),
     path('editar-estado/<pk>', views.editar_Estado.as_view(), name="editar_estado"),
