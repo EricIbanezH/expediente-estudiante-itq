@@ -48,10 +48,44 @@ def crearTipoTramite(request):
 def listarTipoDeTramites(request):
     if request.method=='GET':
         contexto = {'listaTipoDeTramites':Tipo_Tramite.objects.all(),
-                    'listaRelacionTramiteRol': Rel_Tram_Rol.objects.all()}
+                    'listaRelacionTramiteRol': Rel_Tram_Rol.objects.all(),
+                    'listaRelacionTramiteDocumentos': Rel_Tram_Doc.objects.all()}
         return render(request,'lista-tipo-de-tramite.html',contexto)
 
-           
+def eliminarRelacionTramiteRol(modeloTramite):
+    relaciones = Rel_Tram_Rol.objects.filter(tramite=modeloTramite)
+    for relacion in relaciones:
+        relacion.delete()
+
+def eliminarRelacionTramiteDocumento(modeloTramite):
+    relaciones = Rel_Tram_Doc.objects.filter(tramite=modeloTramite)
+    for relacion in relaciones:
+        relacion.delete()    
+    
+class editar_tipoTramite(UpdateView):
+    model = Tipo_Tramite
+    form_class = FormularioTramite
+    template_name = 'formulario.html'
+    success_url = reverse_lazy('listar_tramites') 
+    
+    def post(self, request, *args, **kwargs):
+     response = super().get(request, *args, **kwargs)
+     
+     eliminarRelacionTramiteRol(self.object)
+     listaIdDeRoles = request.POST.getlist('rolesPermitidos',default=['emptyList'])
+     publicarRelacionTramiteRol(self.object,listaIdDeRoles)
+     
+     eliminarRelacionTramiteDocumento(self.object)
+     listaIdDeDocumentos = request.POST.getlist('requerimientos',default=['emptyList'])
+     publicarRelacionTramiteDocumento(self.object,listaIdDeDocumentos)
+     
+     return super(editar_tipoTramite, self).post(request, **kwargs)
+
+def eliminar_TipoTramite(request, pk):
+    registro = get_object_or_404(Tipo_Tramite, id=pk)
+    registro.delete()
+    return redirect('listar_tramites')
+
 # Create your views here.
 # R: nel
 
