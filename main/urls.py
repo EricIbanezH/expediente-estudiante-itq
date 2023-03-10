@@ -1,6 +1,5 @@
 from django.urls import path #{LIBRERIA URLS DE DJANGO}
 from . import views
-from editor import views as viewsEditor
 
 #{----------------------------------------------------------------------------------------------}
 
