@@ -4,7 +4,7 @@ from editor.models import Tipo_Tramites, Rol, Tipo_Documentos, Estados, Comentar
 
 
 class FormularioTramite(forms.ModelForm):
-    opcionesRoles = [(choice.pk, choice.Rol) for choice in Rol.objects.raw('SELECT * FROM EDITOR_ROL')]
+    opcionesRoles = [(choice.pk, choice.Rol) for choice in Rol.objects.all()]
     rolesPermitidos = forms.MultipleChoiceField(label="Roles con permisos",required=True,choices=opcionesRoles,widget=forms.CheckboxSelectMultiple)
     opcionesDocumentos = [(choice.pk, choice.nombre) for choice in Tipo_Documentos.objects.all()]
     requerimientos = forms.MultipleChoiceField(label="Documentos requeridos para tramite",required=True,choices=opcionesDocumentos,widget=forms.CheckboxSelectMultiple)

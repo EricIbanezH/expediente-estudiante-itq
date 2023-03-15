@@ -104,7 +104,7 @@ def crear_Estado(request):
     
 def listar_Estados(request):
     lista = Estados.objects.all()
-    return render(request, 'listas/lista-estado.html', {'object_list' : lista})
+    return render(request, 'plantilla_lista.html', {'object_list' : lista})
 
 class editar_Estado(UpdateView):
     model = Estados
@@ -131,7 +131,7 @@ def crear_Comentario(request):
     
 def listar_Comentarios(request):
     lista = Comentarios.objects.all()
-    return render(request, 'listas/lista-comentario.html', {'object_list' : lista})
+    return render(request, 'plantilla_lista.html', {'object_list' : lista})
 
 class editar_Comentario(UpdateView):
     model = Comentarios
@@ -158,7 +158,7 @@ def crear_Tipo_Archivo(request):
     
 def listar_Tipo_Archivos(request):
     lista = Tipo_Archivos.objects.all()
-    return render(request, 'listas/lista-tipo-archivo.html', {'object_list' : lista})
+    return render(request, 'plantilla_lista.html', {'object_list' : lista})
 
 class editar_Tipo_Archivo(UpdateView):
     model = Tipo_Archivos
@@ -185,7 +185,7 @@ def crear_Rol(request):
     
 def listar_Roles(request):
     lista = Rol.objects.all()
-    return render(request, 'listas/lista-roles.html', {'object_list' : lista})
+    return render(request, 'plantilla_lista.html', {'object_list' : lista})
 
 class editar_Rol(UpdateView):
     model = Rol
@@ -219,7 +219,7 @@ def publicarTipoDocumento(request):
 
 def listar_tipoDocumento(request):
     lista = Tipo_Documentos.objects.all()
-    return render(request, 'listas/lista-tipo-documento.html', {'object_list' : lista})
+    return render(request, 'plantilla_lista.html', {'object_list' : lista})
 
 class editar_TipoDocumento(UpdateView):
     model = Tipo_Documentos
